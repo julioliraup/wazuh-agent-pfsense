@@ -1,14 +1,15 @@
 #!/bin/sh
 
 _fatal_error () {
-  echo "\[\033[0;33m\]error: $1\[\033[0m\]"
+  echo "\033[0;33merror: $1\033[0m"
   exit 1
 }
 
-_sucess () {
-  echo "\[\033[0;32m\]Sucess: $1\[\033[0m\]"
+_success () {
+  echo "\033[0;32mSuccess: $1\033[0m"
   exit 1
 }
+
 _change_repo_freebsd_to () {
   [ "$1" == "yes" ] && expression='s/FreeBSD: { enabled: no/FreeBSD: { enabled: yes/' || expression='s/FreeBSD: { enabled: yes/FreeBSD: { enabled: no/'
   [ "$1" == "yes" ] && actual="no" || actual="yes"
