@@ -1,12 +1,12 @@
 #!/bin/sh
 
 _fatal_error () {
-  echo "\033[0;33merror: $1\033[0m"
+  echo -e "\033[0;33merror: $1\033[0m"
   exit 1
 }
 
 _success () {
-  echo "\033[0;32mSuccess: $1\033[0m"
+  echo -e "\033[0;32mSuccess: $1\033[0m"
 }
 
 _change_repo_freebsd_to () {
@@ -36,7 +36,7 @@ _change_repo_freebsd_to () {
 [ "$1" == "" ] && _fatal_error "USE: $0 <WAZUH-SERVER>"
 
 _change_repo_freebsd_to "yes" && _success "Enabled packages FreeBSD"
-echo "y" | pkg update -q && _success "Updated packages" || _fatal_error "Do not update system. Run: pkg update -f"
+echo "y" | pkg update -q && _success "Updated packages" || echo "[Warning] Do not update system. Run: pkg update -f"
 wazuh_version=$(pkg search -q "^wazuh-agent") && _success "Found $wazuh_version" || _fatal_error "Do no found wazuh-agent. Check repo version"
 pkg install -qy "$wazuh_version" && _success "$wazuh_version installed" || _fatal_error "Do no install $wazuh_version. Run pkg install $wazuh_version"
 _change_repo_freebsd_to "no" && _success "FreeBSD repo are disabled" || _fatal_error "Disable FreeBSD repo for do not problems"
