@@ -7,7 +7,6 @@ _fatal_error () {
 
 _success () {
   echo "\033[0;32mSuccess: $1\033[0m"
-  exit 1
 }
 
 _change_repo_freebsd_to () {
