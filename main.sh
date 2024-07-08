@@ -40,8 +40,8 @@ echo "y" | pkg update -q && _success "Updated packages" || echo "[Warning] Do no
 wazuh_version=$(pkg search -q "^wazuh-agent") && _success "Found $wazuh_version" || _fatal_error "Do no found wazuh-agent. Check repo version"
 pkg install -qy "$wazuh_version" && _success "$wazuh_version installed" || _fatal_error "Do no install $wazuh_version. Run pkg install $wazuh_version"
 _change_repo_freebsd_to "no" && _success "FreeBSD repo are disabled" || _fatal_error "Disable FreeBSD repo for do not problems"
-echo "y" | pkg clean -yq && _success "Removing unless packages" || _fatal_error "Do no clean system"
-echo "y" | pkg update -yq && _success "Update packages" || _fatal_error "Check your connection"
+echo "y" | pkg clean -aq && _success "Removing unless packages" || _fatal_error "Do no clean system"
+echo "y" | pkg update -q && _success "Update packages" || _fatal_error "Check your connection"
 cp /etc/localtime /var/ossec/etc/
 sed -i '' -e "s/>IP</>$1</" /var/ossec/etc/ossec.conf
 sed -i '' -e 's/>udp</>tcp</' /var/ossec/etc/ossec.conf
