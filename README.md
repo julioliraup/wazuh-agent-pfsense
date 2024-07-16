@@ -8,3 +8,9 @@ cd wazuh-agent-pfsense-main/
 sh main.sh <WAZUH-MANAGER-ADDRESS>
 ```
 > WAZUH MANAGER ADDRESS: set IP or domain (FQDN) with argument
+
+## TROUBLESHOOT
+If dont show packages repo
+```sh
+pkg install -fy pkg pfSense-repo pfSense-upgrade
+```
